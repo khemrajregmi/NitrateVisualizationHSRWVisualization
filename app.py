@@ -73,7 +73,28 @@ if df_selection.empty:
 st.title(":bar_chart: Kleve Wesel Dashboard")
 st.markdown("##")
 
+# ---- Line Chart ----
+st.header("Line Chart")
+df2 = df_selection[['year', 'landkreis', 'messergebnis_c']].copy()
+average_df = df2.groupby(['year', 'landkreis']).mean().reset_index()
+fig_line = px.line(average_df, x='year', y='messergebnis_c', color='landkreis',
+              markers=True, title='Measurement by District')
+fig_line.update_layout(yaxis_title='Average measurements',legend_title_text='District')
+st.plotly_chart(fig_line)
 
+# ---- Bar Chart ----
+st.header("Bar Chart")
+df3 = df_selection[[ 'städte', 'messergebnis_c']].copy()
+average_df = df3.groupby(['städte']).mean().reset_index()
+fig_bar = px.bar(average_df, x='städte', y='messergebnis_c', title='Measurement by Cities')
+fig_bar.update_layout(xaxis_title='City', yaxis_title='Average measurements')
+st.plotly_chart(fig_bar)
+
+
+# ---- Pie Chart ----
+st.header("Pie Chart")
+fig_pie = px.pie(average_df, names='städte', values='messergebnis_c', title='Measurement by Cities')
+st.plotly_chart(fig_pie)
 
 # ---- Footer ----
 st.markdown(

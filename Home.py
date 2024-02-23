@@ -169,48 +169,71 @@ with st.expander("Line chart detail"):
 
 df2 = df_selection[['year', 'landkreis', 'messergebnis_c']].copy()
 average_df = df2.groupby(['year', 'landkreis']).mean().reset_index()
+
+# Creating the line chart
 fig_line = px.line(average_df, x='year', y='messergebnis_c', color='landkreis',
                    markers=True, title='Measurement by District')
 fig_line.update_layout(yaxis_title='Average measurements', legend_title_text='District', xaxis_title="Year",
                        xaxis=dict(dtick=2),
                        width=1000,
                        height=500)
+
+# Check if any average measurement is more than 40
+if average_df['messergebnis_c'].max() > 50:
+    # Add a dark horizontal line at y=50
+    fig_line.add_hline(y=50, line_dash="dash", line_color="black",
+                       annotation_text="Drinking water limit value", annotation_position="bottom right")
+
+# Display the chart in Streamlit
 st.plotly_chart(fig_line)
 
 # ---- Bar Chart ----
 st.markdown('<div id="bar-chart"></div>', unsafe_allow_html=True)
 st.header("Bar Chart")
-with st.expander("Line chart detail"):
+with st.expander("Bar Chart detail"):
     st.write(
-        "A line chart, also known as a line graph or curve chart, is a graphical representation used to display data "
-        "points connected by straight lines."
-        "This type of chart is particularly useful for visualizing trends, changes, and relationships in data over a "
-        "continuous interval, often time.")
-    # You can add more Streamlit widgets inside the expander to enrich your app
-    st.write(
-        "The x-axis shows the years from 1978 to 2022, and the y-axis shows the average measurement. The chart includes two districts, Wesel and Kleve.")
+        "A bar chart, also known as a bar graph, is a graphical representation of categorical data with rectangular bars. "
+        "The length of each bar is proportional to the value it represents, making it easy to compare different categories."
+        "This type of chart is particularly useful for visualizing comparisons between different groups or categories.")
 
+    st.write(
+        "The x-axis of this bar chart shows the cities, and the y-axis shows the average measurement. "
+        "The chart represents the average measurements for different cities in the dataset.")
+
+# Assuming df_selection is already defined
 df3 = df_selection[['städte', 'messergebnis_c']].copy()
 average_df = df3.groupby(['städte']).mean().reset_index()
+
+# Assuming df_selection is defined elsewhere
+df3 = df_selection[['städte', 'messergebnis_c']].copy()
+average_df = df3.groupby(['städte']).mean().reset_index()
+
+# Create the bar chart
 fig_bar = px.bar(average_df, x='städte', y='messergebnis_c', title='Measurement by Cities')
 fig_bar.update_layout(xaxis_title='City', yaxis_title='Average measurements',
                       width=1000,
                       height=500
                       )
 
+# Check if any average measurement is more than 50
+if average_df['messergebnis_c'].max() > 50:
+    # Add a dark horizontal line at y=50
+    fig_bar.add_hline(y=50, line_dash="dash", line_color="black",
+                       annotation_text="Drinking water limit value", annotation_position="bottom right")
+
+# Render the chart in Streamlit
 st.plotly_chart(fig_bar)
 
 # ---- Bubble Chart ---
 st.header("Bubble Chart")
 with st.expander("Bubble Chart detail"):
     st.write(
-        "A line chart, also known as a line graph or curve chart, is a graphical representation used to display data "
-        "points connected by straight lines."
-        "This type of chart is particularly useful for visualizing trends, changes, and relationships in data over a "
-        "continuous interval, often time.")
-    # You can add more Streamlit widgets inside the expander to enrich your app
-    st.write(
-        "The x-axis shows the years from 1978 to 2022, and the y-axis shows the average measurement. The chart includes two districts, Wesel and Kleve.")
+        "A bubble chart is a type of scatter plot where data points are displayed as bubbles. "
+        "Similar to a scatter plot, it uses Cartesian coordinates to represent the values of two variables. "
+        "In addition to the x and y coordinates, a bubble chart also uses the size of the bubbles to encode a third variable. "
+        "The size of each bubble is proportional to the value of the third variable, providing a visual comparison between data points."
+        "This type of chart is particularly useful for visualizing relationships between three variables and identifying patterns within the data."
+    )
 
 st.markdown('<div id="bubble-chart"></div>', unsafe_allow_html=True)
 fig_bubble = px.scatter(average_df, x='städte', y='messergebnis_c',
@@ -219,20 +242,27 @@ fig_bubble = px.scatter(average_df, x='städte', y='messergebnis_c',
 fig_bubble.update_layout(xaxis_title='City', yaxis_title='Average measurements',
                          width=1000,  # Set the width of the plot
                          height=500)
+
+if average_df['messergebnis_c'].max() > 50:
+    # Add a dark horizontal line at y=50
+    fig_bubble.add_hline(y=50, line_dash="dash", line_color="black",
+                       annotation_text="Drinking water limit value", annotation_position="bottom right")
 st.plotly_chart(fig_bubble)
+
 
 # ---- Pie Chart ----
 st.markdown('<div id="2d-chart"></div>', unsafe_allow_html=True)
 st.header("2D Pie Chart")
-with st.expander("Line chart detail"):
+with st.expander("2D Pie Chart detail"):
     st.write(
-        "A line chart, also known as a line graph or curve chart, is a graphical representation used to display data "
-        "points connected by straight lines."
-        "This type of chart is particularly useful for visualizing trends, changes, and relationships in data over a "
-        "continuous interval, often time.")
-    # You can add more Streamlit widgets inside the expander to enrich your app
-    st.write(
-        "The x-axis shows the years from 1978 to 2022, and the y-axis shows the average measurement. The chart includes two districts, Wesel and Kleve.")
+        "A 2D pie chart is a circular statistical graphic divided into slices to illustrate numerical proportions. "
+        "Each slice of the pie represents a proportion of the whole, and the size of each slice is proportional to "
+        "the quantity it represents. The chart is called '2D' because it is flat and does not include depth or perspective. "
+        "Pie charts are commonly used to show percentages, proportions, or distributions of categorical data. "
+        "Each slice of the pie typically represents a category, and the entire pie represents the total sum of the data."
+        "This type of chart is particularly useful for visualizing the composition of a whole and understanding "
+        "the relative sizes of different parts within that whole."
+    )
 
 fig_pie = px.pie(average_df, names='städte', values='messergebnis_c', title='Measurement by Cities')
 fig_pie.update_layout(width=1000,  # Set the width of the plot
@@ -240,15 +270,17 @@ fig_pie.update_layout(width=1000,  # Set the width of the plot
 st.plotly_chart(fig_pie)
 
 st.header("3D Pie Chart")
-with st.expander("Line chart detail"):
+with st.expander("3D Pie Chart detail"):
     st.write(
-        "A line chart, also known as a line graph or curve chart, is a graphical representation used to display data "
-        "points connected by straight lines."
-        "This type of chart is particularly useful for visualizing trends, changes, and relationships in data over a "
-        "continuous interval, often time.")
-    # You can add more Streamlit widgets inside the expander to enrich your app
-    st.write(
-        "The x-axis shows the years from 1978 to 2022, and the y-axis shows the average measurement. The chart includes two districts, Wesel and Kleve.")
+        "A 3D pie chart is a variation of the traditional 2D pie chart, with an added dimension of depth. "
+        "Similar to a 2D pie chart, it represents numerical proportions using slices of a circular graphic. "
+        "However, the 3D pie chart adds depth to each slice, creating the illusion of a three-dimensional space. "
+        "Each slice of the pie chart still represents a proportion of the whole, with the size of each slice "
+        "proportional to the quantity it represents. The 3D effect is used to enhance visualization by adding depth "
+        "and perspective, making it easier to distinguish between slices and providing a more immersive viewing experience."
+        "This type of chart is particularly useful for presenting data in a visually appealing and engaging manner, "
+        "especially when depth perception is important for understanding the data."
+    )
 
 st.markdown('<div id="3d-chart"></div>', unsafe_allow_html=True)
 new_headers = {'städte': 'city', 'messergebnis_c': 'measurement'}
@@ -307,13 +339,22 @@ st.markdown('<div id="scatter-plot"></div>', unsafe_allow_html=True)
 st.header("Scatter Plot")
 with st.expander("Scatter Plot detail"):
     st.write(
-        "A line chart, also known as a line graph or curve chart, is a graphical representation used to display data "
-        "points connected by straight lines."
-        "This type of chart is particularly useful for visualizing trends, changes, and relationships in data over a "
-        "continuous interval, often time.")
-    # You can add more Streamlit widgets inside the expander to enrich your app
-    st.write(
-        "The x-axis shows the years from 1978 to 2022, and the y-axis shows the average measurement. The chart includes two districts, Wesel and Kleve.")
+        "A scatter plot is a type of data visualization that uses Cartesian coordinates to display the values of two "
+        "variables"
+        "as points on a two-dimensional plane. Each point on the plot represents an observation or data point, "
+        "with its position"
+        "determined by the values of the two variables. The horizontal axis (x-axis) typically represents one "
+        "variable, while the"
+        "vertical axis (y-axis) represents the other variable. Scatter plots are particularly useful for visualizing the relationship "
+        "between two continuous variables and identifying patterns, trends, or correlations within the data."
+        "This type of chart allows you to quickly assess the relationship between two variables, such as identifying "
+        "whether there is a positive or negative correlation, clusters of data points, or outliers."
+    )
+    st.write("The scatter plot shows that there is a positive correlation between the number of measurements made in "
+             "a city and the size of the city. In other words, larger cities tend to have more measurements made in "
+             "them than smaller cities. However, there are also some exceptions to this trend. For example, "
+             "the city of Sonsbeck has a relatively small number of measurements, while the city of Kamp-Lintfort has "
+             "a relatively large number of measurements.")
 
 # Create a scatter plot using the same data
 # fig_scatter = px.scatter(df2, x='städte', y='messergebnis_c', title='Measurement by Cities (Scatter Plot)')

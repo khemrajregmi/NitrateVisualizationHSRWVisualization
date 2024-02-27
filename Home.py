@@ -63,13 +63,13 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown('<div id="top"></div>', unsafe_allow_html=True)
-st.markdown("<h1 style='text-align: center;'>Groundwater Nitrate Representation</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>Darstellung Nitrat im Grundwasser</h1>", unsafe_allow_html=True)
 
-st.title(":bar_chart: Data representation in Kleve and Wesel")
+st.title(":bar_chart: Darstellungen der Daten für Kleve und Wesel")
 
 st.markdown("<hr style='border: 1px solid #000;'>", unsafe_allow_html=True)
 # File uploader widget
-uploaded_file = st.file_uploader("Add Excel file to your dataset", type=["xlsx", "xls"])
+uploaded_file = st.file_uploader("Lade deinen eigenen Datensatz als Excel-Tabelle hoch", type=["xlsx", "xls"])
 
 try:
     if uploaded_file:
@@ -90,10 +90,10 @@ except Exception as e:
 
 # ---- SIDEBAR ----
 
-st.sidebar.header("Please Filter Here:")
+st.sidebar.header("Bitte hier filtern:")
 
 district = st.sidebar.multiselect(
-    "Select the District:",
+    "Wähle den Landkreis aus:",
     options=df["landkreis"].unique(),
     default=df["landkreis"].unique()
 )
@@ -103,19 +103,19 @@ filtered_cities = df[df["landkreis"].isin(district)]["städte"].unique()
 
 # Multiselect for Cities
 city = st.sidebar.multiselect(
-    "Select the City:",
+    "Wähle die Stadt aus:",
     options=filtered_cities,
     default=filtered_cities
 )
 
 season = st.sidebar.multiselect(
-    "Select the Season:",
+    "Wähle die Jahreszeit aus:",
     options=df["season"].unique(),
     default=df["season"].unique()
 )
 
 year = st.sidebar.multiselect(
-    "Select Year:",
+    "Wähle das Jahr aus:",
     options=df["year"].unique(),
     default=df["year"].unique()
 )
@@ -131,7 +131,7 @@ if df_selection.empty:
 
 # ---- MAINPAGE ----
 # Anchor links
-st.markdown("### Jump to Graphs")
+st.markdown("### Zu den Grafiken navigieren")
 
 # Create a horizontal layout using columns
 col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
@@ -172,8 +172,8 @@ average_df = df2.groupby(['year', 'landkreis']).mean().reset_index()
 
 # Creating the line chart
 fig_line = px.line(average_df, x='year', y='messergebnis_c', color='landkreis',
-                   markers=True, title='Measurement by District')
-fig_line.update_layout(yaxis_title='Average measurements', legend_title_text='District', xaxis_title="Year",
+                   markers=True, title='Messungen nach Landkreis')
+fig_line.update_layout(yaxis_title='Durchschnittliche Messung', legend_title_text='District', xaxis_title="Year",
                        xaxis=dict(dtick=2),
                        width=1000,
                        height=500)
@@ -209,8 +209,8 @@ df3 = df_selection[['städte', 'messergebnis_c']].copy()
 average_df = df3.groupby(['städte']).mean().reset_index()
 
 # Create the bar chart
-fig_bar = px.bar(average_df, x='städte', y='messergebnis_c', title='Measurement by Cities')
-fig_bar.update_layout(xaxis_title='City', yaxis_title='Average measurements',
+fig_bar = px.bar(average_df, x='städte', y='messergebnis_c', title='Messungen nach Stadt')
+fig_bar.update_layout(xaxis_title='City', yaxis_title='Durchschnittliche Messung',
                       width=1000,
                       height=500
                       )
@@ -238,8 +238,8 @@ with st.expander("Bubble Chart detail"):
 st.markdown('<div id="bubble-chart"></div>', unsafe_allow_html=True)
 fig_bubble = px.scatter(average_df, x='städte', y='messergebnis_c',
                         size='messergebnis_c', hover_data=['messergebnis_c'],
-                        title='Bubble Chart - Measurement by District')
-fig_bubble.update_layout(xaxis_title='City', yaxis_title='Average measurements',
+                        title='Bubble Chart - Messungen nach Landkreis')
+fig_bubble.update_layout(xaxis_title='City', yaxis_title='Durchschnittliche Messung',
                          width=1000,  # Set the width of the plot
                          height=500)
 
@@ -264,7 +264,7 @@ with st.expander("2D Pie Chart detail"):
         "the relative sizes of different parts within that whole."
     )
 
-fig_pie = px.pie(average_df, names='städte', values='messergebnis_c', title='Measurement by Cities')
+fig_pie = px.pie(average_df, names='städte', values='messergebnis_c', title='Messungen nach Stadt')
 fig_pie.update_layout(width=1000,  # Set the width of the plot
                       height=500)
 st.plotly_chart(fig_pie)
@@ -285,7 +285,7 @@ with st.expander("3D Pie Chart detail"):
 st.markdown('<div id="3d-chart"></div>', unsafe_allow_html=True)
 new_headers = {'städte': 'city', 'messergebnis_c': 'measurement'}
 average_df.rename(columns=new_headers, inplace=True)
-# fig_pie = px.pie(average_df, names='städte', values='messergebnis_c', title='Measurement by Cities')
+# fig_pie = px.pie(average_df, names='städte', values='messergebnis_c', title='Messungen nach Stadt')
 # st.plotly_chart(fig_pie)
 
 
@@ -359,7 +359,7 @@ with st.expander("Scatter Plot detail"):
 # Create a scatter plot using the same data
 # fig_scatter = px.scatter(df2, x='städte', y='messergebnis_c', title='Measurement by Cities (Scatter Plot)')
 fig_scatter = px.scatter(df3, x='städte', y='messergebnis_c', color="städte",
-                         title='Measurement by Cities (Scatter Plot)')
+                         title='Messungen nach Stadt (Scatter Plot)')
 fig_scatter.update_layout(xaxis_title='City', yaxis_title='Measurement',
                           width=1000,  # Set the width of the plot
                           height=500)
@@ -378,13 +378,13 @@ with st.expander("Intensity Graph detail"):
     st.write("Identify cities with higher or lower average measurements.")
     st.write("Compare the distribution of average measurements across different cities.")
 
-fig_intensity = px.imshow([average_df['measurement']], x=average_df['city'], y=['Average Measurement'])
+fig_intensity = px.imshow([average_df['measurement']], x=average_df['city'], y=['Durchschnittliche Messung'])
 fig_intensity.update_layout(xaxis_title='City', width=1000,  # Set the width of the plot
                             height=500)
 st.plotly_chart(fig_intensity)
 
-if st.button('Go to top'):
-    st.markdown("<a href='#top'>Go to top</a>", unsafe_allow_html=True)
+if st.button('Nach oben'):
+    st.markdown("<a href='#top'>Nach oben</a>", unsafe_allow_html=True)
 
 # ---- Footer ----
 st.markdown(

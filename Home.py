@@ -210,7 +210,7 @@ average_df = df3.groupby(['städte']).mean().reset_index()
 
 # Create the bar chart
 fig_bar = px.bar(average_df, x='städte', y='messergebnis_c', title='Messungen nach Stadt')
-fig_bar.update_layout(xaxis_title='City', yaxis_title='Durchschnittliche Messung',
+fig_bar.update_layout(xaxis_title='Stadt', yaxis_title='Durchschnittliche Messung',
                       width=1000,
                       height=500
                       )
@@ -239,7 +239,7 @@ st.markdown('<div id="bubble-chart"></div>', unsafe_allow_html=True)
 fig_bubble = px.scatter(average_df, x='städte', y='messergebnis_c',
                         size='messergebnis_c', hover_data=['messergebnis_c'],
                         title='Bubble Chart - Messungen nach Landkreis')
-fig_bubble.update_layout(xaxis_title='City', yaxis_title='Durchschnittliche Messung',
+fig_bubble.update_layout(xaxis_title='Stad', yaxis_title='Durchschnittliche Messung',
                          width=1000,  # Set the width of the plot
                          height=500)
 
@@ -360,7 +360,7 @@ with st.expander("Scatter Plot detail"):
 # fig_scatter = px.scatter(df2, x='städte', y='messergebnis_c', title='Measurement by Cities (Scatter Plot)')
 fig_scatter = px.scatter(df3, x='städte', y='messergebnis_c', color="städte",
                          title='Messungen nach Stadt (Scatter Plot)')
-fig_scatter.update_layout(xaxis_title='City', yaxis_title='Measurement',
+fig_scatter.update_layout(xaxis_title='Stadt', yaxis_title='Measurement',
                           width=1000,  # Set the width of the plot
                           height=500)
 st.plotly_chart(fig_scatter)
@@ -379,7 +379,7 @@ with st.expander("Intensity Graph detail"):
     st.write("Compare the distribution of average measurements across different cities.")
 
 fig_intensity = px.imshow([average_df['measurement']], x=average_df['city'], y=['Durchschnittliche Messung'])
-fig_intensity.update_layout(xaxis_title='City', width=1000,  # Set the width of the plot
+fig_intensity.update_layout(xaxis_title='Stad', width=1000,  # Set the width of the plot
                             height=500)
 st.plotly_chart(fig_intensity)
 

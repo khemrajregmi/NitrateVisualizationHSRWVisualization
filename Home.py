@@ -73,15 +73,15 @@ uploaded_file = st.file_uploader("Lade deinen eigenen Datensatz als Excel-Tabell
 
 try:
     if uploaded_file:
-        with st.spinner('Uploading and processing the file...'):
+        with st.spinner('Die Datei wird hochgeladen und verarbeitet...'):
             df = upload_new_excel(uploaded_file)
             year_col = pd.to_datetime(df['datum_pn'])
             df['year'] = year_col.dt.year
 
-        st.success('File is successfully uploaded and processed!')
+        st.success('Datei wurde erfolgreich hochgeladen und verarbeitet!')
         # Display your dataframe or any other content here
     else:
-        st.warning("Original dataset is used for exploration.")
+        st.warning("Für die Exploration wird der Originaldatensatz verwendet.")
 
 except ValueError as e:
     st.error(str(e))

@@ -55,10 +55,10 @@ def upload_new_excel(uploaded_file):
 
 st.markdown("""
     <div style="display: flex; justify-content: space-between; padding: 10px; background-color: #f0f0f0;">
-        <a href="/" target="_blank">Home</a>
-        <a href="/About_Us" target="_blank">About Us</a>
-        <a href="/Resources" target="_blank">Resources</a>
-        <a href="/Contact_Us" target="_blank">Contact Us</a>
+        <a href="/" target="_blank">Hauptseite</a>
+        <a href="/About_Us" target="_blank">Über uns</a>
+        <a href="/Resources" target="_blank">Ressourcen</a>
+        <a href="/Contact_Us" target="_blank">Kontaktiere uns</a>
     </div>
 """, unsafe_allow_html=True)
 

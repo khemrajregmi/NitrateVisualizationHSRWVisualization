@@ -194,7 +194,7 @@ fig_line.update_layout(yaxis_title='Durchschnittliche Messung', legend_title_tex
 if average_df['messergebnis_c'].max() > 50:
     # Add a dark horizontal line at y=50
     fig_line.add_hline(y=50, line_dash="dash", line_color="black",
-                       annotation_text="Drinking water limit value", annotation_position="bottom right")
+                       annotation_text="Grenzwert für Trinkwasser", annotation_position="bottom right")
 
 # Display the chart in Streamlit
 st.plotly_chart(fig_line)
@@ -244,7 +244,7 @@ fig_bar.update_layout(xaxis_title='Stadt', yaxis_title='Durchschnittliche Messun
 if average_df['messergebnis_c'].max() > 50:
     # Add a dark horizontal line at y=50
     fig_bar.add_hline(y=50, line_dash="dash", line_color="black",
-                       annotation_text="Drinking water limit value", annotation_position="bottom right")
+                       annotation_text="Grenzwert für Trinkwasser", annotation_position="bottom right")
 
 # Render the chart in Streamlit
 st.plotly_chart(fig_bar)
@@ -284,7 +284,7 @@ fig_bubble.update_layout(xaxis_title='Stad', yaxis_title='Durchschnittliche Mess
 if average_df['messergebnis_c'].max() > 50:
     # Add a dark horizontal line at y=50
     fig_bubble.add_hline(y=50, line_dash="dash", line_color="black",
-                       annotation_text="Drinking water limit value", annotation_position="bottom right")
+                       annotation_text="Grenzwert für Trinkwasser", annotation_position="bottom right")
 st.plotly_chart(fig_bubble)
 
 

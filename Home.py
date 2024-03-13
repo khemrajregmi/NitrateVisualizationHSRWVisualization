@@ -134,23 +134,23 @@ if df_selection.empty:
 st.markdown("### Zu den Grafiken navigieren")
 
 # Create a horizontal layout using columns
+# Assuming you have already defined your columns layout
 col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
 
-# Add buttons to each column
-if col1.button("Line Chart"):
-    st.markdown('<a href="#line-chart">Go to Line Chart</a>', unsafe_allow_html=True)
-if col2.button("Bar Chart"):
-    st.markdown('<a href="#bar-chart">Go to Bar Chart</a>', unsafe_allow_html=True)
-if col3.button("Bubble Chart"):
-    st.markdown('<a href="#bubble-chart">Go to Bubble Chart</a>', unsafe_allow_html=True)
-if col4.button("2D Chart"):
-    st.markdown('<a href="#2d-chart">Go to 2D Chart</a>', unsafe_allow_html=True)
-if col5.button("3D Chart"):
-    st.markdown('<a href="#3d-chart">Go to 3D Chart</a>', unsafe_allow_html=True)
-if col6.button("Scatter Plot"):
-    st.markdown('<a href="#scatter-plot">Go to Scatter Plot</a>', unsafe_allow_html=True)
-if col7.button("Intensity graph"):
-    st.markdown('<a href="#intensity-graph">Go to Intensity graph</a>', unsafe_allow_html=True)
+if col1.button("Liniendiagramm"):
+    st.markdown('<a href="#line-chart">Gehe zum Liniendiagramm</a>', unsafe_allow_html=True)
+if col2.button("Balkendiagramm"):
+    st.markdown('<a href="#bar-chart">Gehe zum Balkendiagramm</a>', unsafe_allow_html=True)
+if col3.button("Blasendiagramm"):
+    st.markdown('<a href="#bubble-chart">Gehe zum Blasendiagramm</a>', unsafe_allow_html=True)
+if col4.button("2D-Diagramm"):
+    st.markdown('<a href="#2d-chart">Gehe zum 2D-Diagramm</a>', unsafe_allow_html=True)
+if col5.button("3D-Diagramm"):
+    st.markdown('<a href="#3d-chart">Gehe zum 3D-Diagramm</a>', unsafe_allow_html=True)
+if col6.button("Streudiagramm"):
+    st.markdown('<a href="#scatter-plot">Gehe zum Streudiagramm</a>', unsafe_allow_html=True)
+if col7.button("Intensitätsdiagramm"):
+    st.markdown('<a href="#intensity-graph">Gehe zum Intensitätsdiagramm</a>', unsafe_allow_html=True)
 
 # ---- Line Chart ----
 st.markdown('<div id="line-chart"></div>', unsafe_allow_html=True)

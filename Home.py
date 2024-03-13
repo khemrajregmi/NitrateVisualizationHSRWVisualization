@@ -64,6 +64,28 @@ st.markdown("""
 
 st.markdown('<div id="top"></div>', unsafe_allow_html=True)
 st.markdown("<h1 style='text-align: center;'>Darstellung Nitrat im Grundwasser</h1>", unsafe_allow_html=True)
+logo_url = "https://www.hochschule-rhein-waal.de/sites/default/files/images/2022/04/12/300617022004d3sq.png"
+st.markdown(f"""
+<style>
+.logo {{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 25px;
+}}
+.markdown-text-container {{
+    padding-top: 100px;
+}}
+
+h1 {{
+    color: green !important;
+}}
+h2 {{
+    color: blue !important;
+}}
+</style>
+<img class="logo" src="{logo_url}" alt="Logo" height="100">
+""", unsafe_allow_html=True)
 
 st.title(":bar_chart: Darstellungen der Daten für Kleve und Wesel")
 

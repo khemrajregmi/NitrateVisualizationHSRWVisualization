@@ -2,7 +2,9 @@ import streamlit as st
 
 # Page Configuration
 st.set_page_config(page_title="Contact Us", layout="wide")
-
+# Displaying the banner at the top of the page
+banner_url = "https://www.hochschule-rhein-waal.de/sites/default/files/images/2022/04/12/seite.jpg"
+st.image(banner_url, width=1340, caption="Hochschule Rhein-Waal")
 st.title("Contact Us/Kontaktiere Uns")
 
 # Layout: Two Columns

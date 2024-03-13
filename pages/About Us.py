@@ -2,7 +2,16 @@ import streamlit as st
 
 # Page Configuration
 st.set_page_config(page_title="Nitratescouts", layout="wide")
+banner_url = "https://www.hochschule-rhein-waal.de/sites/default/files/images/2022/04/12/seite.jpg"
 
+# Using columns to center the image
+left_col, center_col, right_col = st.columns([1,2,1])
+
+with center_col:
+    # Displaying the image in the center column
+    st.image(banner_url, width=468, caption="Hochschule Rhein-Waal")
+
+st.title("Contact Us/Kontaktiere Uns")
 # Custom HTML for the logo in the top right
 logo_url = "https://www.hochschule-rhein-waal.de/sites/default/files/images/2022/04/12/300617022004d3sq.png"
 st.markdown(f"""

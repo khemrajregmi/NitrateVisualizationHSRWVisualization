@@ -62,6 +62,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
+
 st.markdown('<div id="top"></div>', unsafe_allow_html=True)
 st.markdown("<h1 style='text-align: center;'>Darstellung Nitrat im Grundwasser</h1>", unsafe_allow_html=True)
 logo_url = "https://www.hochschule-rhein-waal.de/sites/default/files/images/2022/04/12/300617022004d3sq.png"
@@ -79,9 +80,23 @@ st.markdown(f"""
 
 h1 {{
     color: green !important;
+    font-size: 40px;
 }}
 h2 {{
     color: blue !important;
+}}
+a {{
+    color: rgb(230, 148, 255);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+}}
+
+a:hover {{
+    color: rgb(230, 148, 255);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
 }}
 </style>
 <img class="logo" src="{logo_url}" alt="Logo" height="100">

@@ -9,7 +9,7 @@ left_col, center_col, right_col = st.columns([1,2,1])
 
 with center_col:
     # Displaying the image in the center column
-    st.image(banner_url, width=468, caption="Hochschule Rhein-Waal")
+    st.image(banner_url, width=468, caption="Figure Sour")
 
 st.title("About Us/Über Uns")
 # Custom HTML for the logo in the top right

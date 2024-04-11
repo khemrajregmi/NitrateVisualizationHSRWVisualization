@@ -98,6 +98,24 @@ a:hover {{
     font-size: 20px;
     font-weight: bold;
 }}
+
+.st-c9 {{
+    background-color: rgb(141 190 72);
+}}
+
+button.st-emotion-cache-1o4979b.ef3psqc12 {{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}}
 </style>
 <img class="logo" src="{logo_url}" alt="Logo" height="100">
 """, unsafe_allow_html=True)
@@ -105,7 +123,18 @@ a:hover {{
 
 st.title(":bar_chart: Data representation in Kleve and Wesel")
 
+with open("resources/setup.pdf", "rb") as file:
+    btn = st.download_button(
+            label=":orange_book: Guideline",
+            data=file,
+            file_name="UserManual.pdf",
+            mime="image/png"
+          )
+
+
+
 st.markdown("<hr style='border: 1px solid #000;'>", unsafe_allow_html=True)
+
 # File uploader widget
 uploaded_file = st.file_uploader("Add Excel file to your dataset", type=["xlsx", "xls"])
 

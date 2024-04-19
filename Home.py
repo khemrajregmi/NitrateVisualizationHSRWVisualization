@@ -122,7 +122,7 @@ button.st-emotion-cache-1o4979b.ef3psqc12 {{
 
 st.title(":bar_chart: Darstellungen der Daten für Kleve und Wesel")
 
-with open("resources/setup.pdf", "rb") as file:
+with open("resources/setupde.pdf", "rb") as file:
     btn = st.download_button(
             label=":orange_book: Guideline",
             data=file,

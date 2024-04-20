@@ -1,18 +1,11 @@
 import streamlit as st
+import os
+
 
 # Page Configuration
 st.set_page_config(page_title="Nitratescouts", layout="wide")
-banner_url = "https://www.hochschule-rhein-waal.de/sites/default/files/images/2022/04/12/seite.jpg"
 
-# Using columns to center the image
-left_col, center_col, right_col = st.columns([1,2,1])
 
-with center_col:
-    # Displaying the image in the center column
-    st.image(banner_url, width=468, caption="Figure Sour")
-
-st.title("About Us/Über Uns")
-# Custom HTML for the logo in the top right
 logo_url = "https://www.hochschule-rhein-waal.de/sites/default/files/images/2022/04/12/300617022004d3sq.png"
 st.markdown(f"""
 <style>
@@ -36,11 +29,30 @@ h2 {{
 <img class="logo" src="{logo_url}" alt="Logo" height="100">
 """, unsafe_allow_html=True)
 
+st.title("About Us/Über Uns")
+
+# Define the paths to your images
+image_path_1 = 'resources/crops.JPG'
+image_path_2 = 'resources/crops2.JPG'
+
+# Create two columns for the images to sit side-by-side
+col1, col2 = st.columns(2)
+
+# Display the first image in the first column
+with col1:
+    st.image(image_path_1, width=468, caption="Figure: Crops from green fab lab HSRW")
+
+# Display the second image in the second column
+with col2:
+    st.image(image_path_2, width=468, caption="Figure: Crops from green fab lab HSRW")
+
+# Custom HTML for the logo in the top right
+
+
 # Page Content
 st.title("Nitratescouts")
 
 st.markdown('<p class="custom-header">Participatory development of educational modules to teach systemic interrelationships / Partizipative Entwicklung von Bildungsmodulen zur Vermittlung systemischer Zusammenhänge</p>', unsafe_allow_html=True)
-
 
 # Bilingual Paragraphs
 st.write("""

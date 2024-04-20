@@ -58,7 +58,7 @@ h2 {{
 """, unsafe_allow_html=True)
 
 # Display a download button for the Excel sheet
-if st.button("Download Excel Sheet"):
+if st.button("Download Excel/Laden Sie Excel herunter"):
     st.download_button(
         label="Click here to confirm your download/Klicken Sie hier, um Ihren Download zu bestätigen",
         data=excel_data,

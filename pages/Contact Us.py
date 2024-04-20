@@ -41,7 +41,7 @@ with col1:
 with col2:
     st.write("### Design and Develop by")
     st.write("Khem Raj Regmi")
-    st.write(f"Email: [khem-raj.regmi@hsrw.org](mailto:khem-raj.regmi@hsrw.org)/(khem.r.regmi@gmail.com)")
+    st.write("Email: [khem-raj.regmi@hsrw.org](mailto:khem-raj.regmi@hsrw.org)/(khem.r.regmi@gmail.com)")
 
 # Define the paths to your images
 image_path_1 = 'resources/crops.JPG'

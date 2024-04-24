@@ -12,7 +12,7 @@ current_dir = os.path.dirname(__file__)
 
 # Define the image file name and Excel file name
 image_filename = "sample.png"
-excel_filename = "demo_data.xlsx"
+excel_filename = "kleve_wesel_1980_1989.xlsx"
 
 # Concatenate the directory and filename to get the full path
 image_path = os.path.join(current_dir, image_filename)

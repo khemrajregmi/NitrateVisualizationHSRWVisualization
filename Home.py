@@ -124,7 +124,7 @@ st.title(":bar_chart: Darstellungen der Daten für Kleve und Wesel")
 
 with open("resources/setupde.pdf", "rb") as file:
     btn = st.download_button(
-            label=":orange_book: Guideline",
+            label=":orange_book: Richtlinie",
             data=file,
             file_name="UserManual.pdf",
             mime="image/png"
